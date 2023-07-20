@@ -42,13 +42,7 @@ We are using Docker Compose to deploy the following components:
 docker-compose up --build
 # wait until it's setup
 ```
-2) Go to Postgres console and check wal_level (need to be `logical`):
-```sql
-Show wal_level;
-ALTER SYSTEM SET wal_level = logical;
-```
-!!!Restart `postgres` container after changes!!!
-3) Download Kafka Connect Elastic Sink Connector https://www.confluent.io/hub/confluentinc/kafka-connect-elasticsearch
+2) Download Kafka Connect Elastic Sink Connector https://www.confluent.io/hub/confluentinc/kafka-connect-elasticsearch
 - Extract downloaded zip file
 - Rename lib folder into kafka-connect-jdbc
 - Copy kafka-connect-jdbc into debezium the container of kafka-connect
@@ -66,8 +60,8 @@ $ ls -all
 docker stop connect
 docker start connect
 ```
-4) Create source and elasticsearch connections
+3) Create source and elasticsearch connections
 ```shell
 ./start.sh
 ```
-5) Run application
+4) Run application

@@ -1,8 +1,8 @@
 package com.kdes.dbservice.service;
 
+import com.kdes.dbservice.model.Item;
 import com.kdes.dbservice.model.Order;
-import com.kdes.dbservice.model.OrderItem;
-import com.kdes.dbservice.repository.OrderItemRepo;
+import com.kdes.dbservice.repository.ItemRepo;
 import com.kdes.dbservice.repository.OrderRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import java.util.UUID;
 public class OrderService {
 
     private final OrderRepo orderRepo;
-    private final OrderItemRepo orderItemRepo;
+    private final ItemRepo itemRepo;
 
     @Transactional
     public UUID createOrder(Map<String, Object> orderMap) {
@@ -30,7 +30,7 @@ public class OrderService {
         var itemsMap = (List<Map<String, Object>>) orderMap.get("items");
         var items = itemsMap
             .stream()
-            .map(i -> OrderItem
+            .map(i -> Item
                 .builder()
                 .itemId(UUID.randomUUID())
                 .orderId(order)
@@ -40,7 +40,7 @@ public class OrderService {
                 .build()
             )
             .toList();
-        orderItemRepo.saveAll(items);
+        itemRepo.saveAll(items);
         return order.getOrderId();
     }
 }

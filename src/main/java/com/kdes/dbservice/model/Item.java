@@ -16,12 +16,12 @@ import lombok.NoArgsConstructor;
 import java.util.UUID;
 
 @Entity
-@Table(name = "order_items")
+@Table(name = "items")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderItem {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
