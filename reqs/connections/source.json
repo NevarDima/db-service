@@ -1,0 +1,23 @@
+{
+  "name": "kdes-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "123",
+    "database.server.id": "184054",
+    "database.dbname": "kdesdb",
+    "database.server.name": "dbserver1",
+    "database.whitelist": "kdesdb",
+    "database.history.kafka.bootstrap.servers": "kafka:9092",
+    "database.history.kafka.topic": "schema-changes.kdesdb",
+    "topic.prefix": "kdes",
+    "plugin.name": "pgoutput",
+    "transforms": "route",
+    "transforms.route.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms.route.regex": "([^.]+)\\.([^.]+)\\.([^.]+)",
+    "transforms.route.replacement": "$3"
+  }
+}
